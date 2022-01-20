@@ -1,15 +1,41 @@
-import { View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import theme from '../theme';
+import ItemBody from './ItemBody';
+import ItemFooter from './ItemFooter';
 
-const RepositoryItem  = ({ item }) => (
-    <View>
-      <Text>Full name: {item.fullName}</Text>
-      <Text>Description: {item.description}</Text>
-      <Text>Language: {item.language}</Text>
-      <Text>Forks: {item.forksCount}</Text>
-      <Text>Stars: {item.stargazersCount}</Text>
-      <Text>Rating: {item.ratingAverage}</Text>
-      <Text>Reviews: {item.reviewCount}</Text>
-    </View>
+const styles = StyleSheet.create({
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: theme.colors.white,
+    padding: 10,
+  },
+});
+
+const RepositoryItem  = ({ 
+    ownerAvatarUrl,
+    fullName,
+    description,
+    language,
+    stargazersCount,
+    forksCount,
+    reviewCount,
+    ratingAverage 
+  }) => (
+  <View style={styles.flexContainer}>
+    <ItemBody 
+      ownerAvatarUrl={ownerAvatarUrl}
+      fullName={fullName}
+      description={description}
+      language={language}
+    />
+    <ItemFooter 
+      stargazersCount={stargazersCount}
+      forksCount={forksCount}
+      reviewCount={reviewCount}
+      ratingAverage={ratingAverage}
+    />
+  </View>
 );
 
 export default RepositoryItem ;
