@@ -6,12 +6,15 @@ const theme = {
     white: '#ffffff',
     backgroundPrimary: '#e1e4e8',
     backgroundDark: '#24292e',
+    warning: '#d73a4a',
   },
   fontSizes: {
     body: 14,
     subheading: 16,
   },
   fonts: {
+    android: 'Roboto',
+    ios: 'Arial',
     main: 'System',
   },
   fontWeights: {
