@@ -20,7 +20,7 @@ const RepositoryItem  = ({
     stargazersCount,
     forksCount,
     reviewCount,
-    ratingAverage 
+    ratingAverage, 
   }) => (
   <View style={styles.flexContainer}>
     <ItemBody 

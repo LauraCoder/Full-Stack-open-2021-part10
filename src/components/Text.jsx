@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
     color: theme.colors.textSecondary,
-    lineHeight: 25,
+    marginVertical: 5,
   },
 });
 
