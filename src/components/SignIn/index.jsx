@@ -1,9 +1,8 @@
-import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import useSignIn from '../hooks/useSignIn';
-import SignInForm from './SignInForm';
+import useSignIn from '../../hooks/useSignIn';
 import { useNavigate } from 'react-router-native';
+import SignInContainer from './SignInContainer';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -15,11 +14,6 @@ const validationSchema = yup.object().shape({
     .min(5, 'Password is too short')
     .required('Password is required'),
 });
-
-const initialValues = {
-  username: '',
-  password: '',
-};
 
 const SignIn = () => {
   const [signIn] = useSignIn();
@@ -37,15 +31,8 @@ const SignIn = () => {
     }    
   };
 
-  return (
-    <Formik 
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-    >
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-    </Formik>
-  );
+  return <SignInContainer onSubmit={onSubmit} validationSchema={validationSchema} />
+
 };
 
 export default SignIn;

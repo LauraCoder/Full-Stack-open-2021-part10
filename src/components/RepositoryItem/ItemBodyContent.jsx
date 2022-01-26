@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
-import theme from '../theme';
-import Text from './Text';
+import theme from '../../theme';
+import Text from '../Text';
 
 const styles = StyleSheet.create({
   content: {
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
 
 const ItemBodyContent = ({ fullName, description, language }) => (
   <View style={styles.content}>
-    <Text subHeading>{fullName}</Text>
-    <Text contentText>{description}</Text>
+    <Text subHeading testID='fullName'>{fullName}</Text>
+    <Text contentText testID='description'>{description}</Text>
     <View style={styles.languages}>
-      <Text color='white'>{language}</Text>
+      <Text color='white' testID='language'>{language}</Text>
     </View>
   </View>
 );

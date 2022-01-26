@@ -2,9 +2,9 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { useQuery, useApolloClient } from '@apollo/client';
 import Constants from 'expo-constants';
 
-import { ME } from '../graphql/queries';
-import useAuthStorage from '../hooks/useAuthStorage'; 
-import theme from '../theme';
+import { ME } from '../../graphql/queries';
+import useAuthStorage from '../../hooks/useAuthStorage'; 
+import theme from '../../theme';
 import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({

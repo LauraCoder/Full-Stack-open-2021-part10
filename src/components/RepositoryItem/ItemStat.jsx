@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import Text from './Text';
+import Text from '../Text';
 
 const styles = StyleSheet.create({
   stat: {
@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemStat = ({ count, label }) => (
+const ItemStat = ({ count, label, testID }) => (
   <View style={styles.stat}>
-    <Text subHeading>{count}</Text>
+    <Text subHeading testID={testID}>{count}</Text>
     <Text contentText>{label}</Text>
   </View>
 );
