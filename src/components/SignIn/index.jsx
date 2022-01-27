@@ -32,7 +32,6 @@ const SignIn = () => {
   };
 
   return <SignInContainer onSubmit={onSubmit} validationSchema={validationSchema} />
-
 };
 
 export default SignIn;

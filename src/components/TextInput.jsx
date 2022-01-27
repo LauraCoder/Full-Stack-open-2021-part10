@@ -4,15 +4,16 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   inputField: {
     backgroundColor: theme.colors.white,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
     borderRadius: 5,
     padding: 10,
     marginTop: 15,
     color: theme.colors.textSecondary,
   },
   warning: {
-    borderWidth: 1,
     borderColor: theme.colors.warning,
-  }
+  },
 });  
 
 const TextInput = ({ whiteInput, style, error, ...props }) => {
