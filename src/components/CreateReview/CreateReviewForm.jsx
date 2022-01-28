@@ -11,18 +11,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 20,
   },
-  errorMessage: {
-    color: theme.colors.warning,
-    paddingTop: 10,
-    textAlign: 'center',
-  }
 });
 
 const CreateReviewForm = ({ onSubmit, error }) => {
   return (
     <View style={styles.component}>    
       {error &&
-        <Text style={styles.errorMessage}>{error.message}</Text>
+        <Text errorMessage>{error.message}</Text>
       }
       <FormikTextInput name='ownerName' placeholder='Repository owner name' />
       <FormikTextInput name='repositoryName' placeholder='Repository name' />

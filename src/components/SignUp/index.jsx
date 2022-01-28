@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-native';
 import * as yup from 'yup';
@@ -31,8 +32,9 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const [signUp, {error}] = useMutation(SIGN_UP);
+  const [signUp] = useMutation(SIGN_UP);
   const [signIn] = useSignIn();
+  const [ errorMessage, setErrorMessage ] = useState('');
   let navigate = useNavigate();
 
   const onSubmit = async (values) => {
@@ -54,6 +56,7 @@ const SignUp = () => {
       }
     } catch (e) {
       console.log(e);
+      setErrorMessage(e.message);
     }
   };
 
@@ -64,7 +67,7 @@ const SignUp = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} error={error} />}
+        {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} errorMessage={errorMessage} />}
       </Formik>
     </>
   );

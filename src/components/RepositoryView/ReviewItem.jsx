@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReviewItem = ({ text, rating, createdAt, username }) => {
+const ReviewItem = ({ text, rating, createdAt, username, }) => {
   const formattedDate = format(parseISO(createdAt), 'dd.MM.yyyy');
 
   return (

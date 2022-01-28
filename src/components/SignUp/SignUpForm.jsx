@@ -10,18 +10,13 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 20,
   },
-  errorMessage: {
-    color: theme.colors.warning,
-    paddingTop: 10,
-    textAlign: 'center',
-  }
 });
 
-const SignUpForm = ({ onSubmit, error }) => {
+const SignUpForm = ({ onSubmit, errorMessage }) => {
   return (
     <View style={styles.component}>    
-      {error &&
-        <Text style={styles.errorMessage}>{error.message}</Text>
+      {!errorMessage ? null :
+        <Text errorMessage>{errorMessage}</Text>
       }
       <FormikTextInput name='username' placeholder='Username' />
       <FormikTextInput name='password' placeholder='Password' secureTextEntry />

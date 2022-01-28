@@ -1,4 +1,6 @@
 import { Formik } from 'formik';
+import { View } from 'react-native';
+import Text from '../Text';
 import SignInForm from './SignInForm';
 
 const initialValues = {
@@ -6,16 +8,21 @@ const initialValues = {
   password: '',
 };
 
-const SignInContainer = ({ onSubmit, validationSchema }) => {
+const SignInContainer = ({ onSubmit, validationSchema, errorMessage }) => {
 
   return (
-    <Formik 
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-    >
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-    </Formik>
+    <View>
+      <Formik 
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+      </Formik>
+      {!errorMessage ? null :
+        <Text errorMessage>{errorMessage}</Text>
+      }
+    </View>
   );
 };
 

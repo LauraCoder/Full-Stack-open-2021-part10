@@ -10,8 +10,12 @@ const RepositoryList = () => {
   const [ sorting, setSorting ] = useState('Latest repositories');
   const [ searchQuery, setSearchQuery ] = useState('');
   const [ searchQueryDebounce ] = useDebounce(searchQuery, 500);
-  const { repositories } = useRepositories(sorting, searchQueryDebounce);
+  const { repositories, fetchMore } = useRepositories(sorting, searchQueryDebounce);
   let navigate = useNavigate();
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return (
     <Provider>
@@ -22,6 +26,7 @@ const RepositoryList = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         navigate={navigate}
+        onEndReach={onEndReach}
       />
     </Provider>
   );

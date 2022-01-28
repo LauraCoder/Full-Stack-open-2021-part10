@@ -22,3 +22,11 @@ export const REVIEW_DETAILS = gql`
     createdAt
   }
 `;
+
+export const PAGE_INFO = gql`
+  fragment PageInfoDetails on PageInfo {
+    endCursor
+    startCursor
+    hasNextPage
+  }
+`;

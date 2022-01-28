@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { GET_REPOSITORIES } from '../graphql/queries';
@@ -8,35 +7,49 @@ const useRepositories = (sorting, searchKeyword) => {
 
   switch (sorting) {
     case 'Highest rated repositories':
-      variables = { 'orderBy': 'RATING_AVERAGE', 'orderDirection': 'DESC', searchKeyword}
+      variables = { 'orderBy': 'RATING_AVERAGE', 'orderDirection': 'DESC'}
       break;
     case 'Lowest rated repositories':
-      variables = { 'orderBy': 'RATING_AVERAGE', 'orderDirection': 'ASC', searchKeyword}
+      variables = { 'orderBy': 'RATING_AVERAGE', 'orderDirection': 'ASC'}
       break;
     default:
-      variables = { 'orderBy': 'CREATED_AT', 'orderDirection': 'DESC', searchKeyword};
+      variables = { 'orderBy': 'CREATED_AT', 'orderDirection': 'DESC'};
   }
 
-  const [repositories, setRepositories] = useState();
-  const { data, error, loading } = useQuery(
-    GET_REPOSITORIES, {
-      fetchPolicy: 'cache-and-network',
-      variables
-  });
-
-  const fetchRepositories = async () => {
-    if(data) {
-      setRepositories(data.repositories);
-    }
+  variables = {
+    ...variables,
+    first: 8,
+    searchKeyword
   };
 
-  useEffect(() => {
-    if(data) {
-      fetchRepositories();
-    }
-  }, [data]);
+  const { data, error, loading, fetchMore, ...result } = useQuery(
+    GET_REPOSITORIES, {
+      fetchPolicy: 'cache-and-network',
+      variables,
+  });
 
-  return { repositories, loading, error };
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
+
+  return { 
+    repositories: data?.repositories,
+    fetchMore: handleFetchMore,
+    error,
+    loading,
+    ...result,
+  };
 };
 
 export default useRepositories;

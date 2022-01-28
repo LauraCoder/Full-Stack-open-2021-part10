@@ -43,9 +43,14 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     marginVertical: 5,
   },
+  errorMessage: {
+    color: theme.colors.warning,
+    paddingTop: 10,
+    textAlign: 'center',
+  }
 });
 
-const Text = ({ color, fontSize, fontWeight, subHeading, subHeadingBlue, contentText, style, ...props }) => {
+const Text = ({ color, fontSize, fontWeight, subHeading, subHeadingBlue, contentText, errorMessage, style, ...props }) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,
@@ -56,6 +61,7 @@ const Text = ({ color, fontSize, fontWeight, subHeading, subHeadingBlue, content
     subHeading && styles.subheadingStyle,
     subHeadingBlue && styles.subheadingStyleSecondary,
     contentText && styles.contentTextStyle,
+    errorMessage && styles.errorMessage,
     style,
   ];
 

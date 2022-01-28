@@ -14,12 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({ link, children, onPress }) => {
-  return (
-    <Link to={link} onPress={onPress}>
-      <Text style={styles.text}>{children}</Text>
-    </Link>
-  );
-};
+const AppBarTab = ({ link, children, onPress }) => (
+  <Link to={link} onPress={onPress}>
+    <Text style={styles.text}>{children}</Text>
+  </Link>
+);
 
 export default AppBarTab;

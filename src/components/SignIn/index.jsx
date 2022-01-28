@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as yup from 'yup';
 
 import useSignIn from '../../hooks/useSignIn';
@@ -18,6 +19,7 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   const [signIn] = useSignIn();
   let navigate = useNavigate();
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   const onSubmit = async (values) => {
     const { username, password } = values;
@@ -28,10 +30,11 @@ const SignIn = () => {
       navigate("/", { replace: true });
     } catch (e) {
       console.log(e);
+      setErrorMessage(e.message);
     }    
   };
 
-  return <SignInContainer onSubmit={onSubmit} validationSchema={validationSchema} />
+  return <SignInContainer onSubmit={onSubmit} validationSchema={validationSchema} errorMessage={errorMessage} />
 };
 
 export default SignIn;

@@ -5,11 +5,14 @@ import useRepository from '../../hooks/useRepository';
 import ItemSeparator from '../ItemSeparator';
 import RepositoryInfo from './RepositoryInfo';
 import ReviewItem from './ReviewItem';
-import Text from '../Text';
 
 const RepositoryView  = () => {
   const { id } = useParams();
-  const { repository, reviews, loading } = useRepository( id );
+  const { repository, reviews, fetchMore } = useRepository( id );
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   const renderReviewItem = ({ item }) => (
     <ReviewItem
@@ -21,8 +24,6 @@ const RepositoryView  = () => {
     />
   );
 
-  if (loading) return <Text>Loading...</Text>
-
   return (
     <FlatList
       data={reviews}
@@ -30,6 +31,8 @@ const RepositoryView  = () => {
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   )
 };
